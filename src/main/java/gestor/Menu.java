@@ -1,30 +1,43 @@
 package gestor;
 
-public enum Menu {
-    SALIR("Salir."),
-    NUEVO_CLIENTE("Añadir un nuevo cliente."),
-    BORRAR_CLIENTE("Borrar un cliente existente."),
-    BUSCAR_CLIENTE("Buscar un cliente por nif."),
-    LISTAR_CLIENTES("Listar todos los clientes.");
+import java.util.Scanner;
 
-    String textoOpcion;
+public class Menu {
+    private final transient Scanner teclado = new Scanner(System.in);
+    Gestor gestor = new Gestor();
 
-    private Menu(String textoOpcion) {
-        this.textoOpcion = textoOpcion;
+    public void ejecuta() {
+        int opcion = 0;
+
+        do {
+            System.out.println(OpcionesMenu.getMenu());
+            opcion = pideOpcion();
+            filtraOpcion(opcion);
+        } while(true);
     }
 
-    public static Menu getOpcion(int posicion) {
-        return values()[posicion];
+    private int pideOpcion() {
+        System.out.println("Qué opción desea: ");
+        return teclado.nextInt();
     }
 
-    public static String getMenu() {
-        StringBuilder sb = new StringBuilder();
-        for(Menu opcion: Menu.values()) {
-            sb.append(opcion.ordinal());
-            sb.append(".- ");
-            sb.append(opcion.textoOpcion);
-            sb.append("\n");
+    void filtraOpcion(final int opcion) {
+        switch (opcion){
+            case 1:
+                gestor.nuevoCliente();
+                break;
+            case 2:
+                gestor.borrarCliente();
+                break;
+            case 3:
+                gestor.buscarCliente();
+                break;
+            case 4:
+                gestor.listarClientes();
+                break;
+            case 0:
+                gestor.salir();
+                break;
         }
-        return sb.toString();
     }
 }

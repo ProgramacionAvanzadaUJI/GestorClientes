@@ -1,9 +1,9 @@
 package main;
 
-import gestor.Gestor;
+import gestor.Menu;
 
 public class Main {
     public static void main(String[] args) {
-        new Gestor().ejecuta();
+        new Menu().ejecuta();
     }
 }
