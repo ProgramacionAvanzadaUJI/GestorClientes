@@ -12,7 +12,7 @@ public class Gestor {
         int opcion = 0;
 
         do {
-            System.out.println(muestraMenu());
+            System.out.println(Menu.getMenu());
             opcion = pideOpcion();
             filtraOpcion(opcion);
         } while(true);
@@ -21,17 +21,6 @@ public class Gestor {
     private int pideOpcion() {
         System.out.println("Qué opción desea: ");
         return teclado.nextInt();
-    }
-
-    String muestraMenu() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("0. Salir\n");
-        sb.append("1. Añadir un nuevo cliente.\n");
-        sb.append("2. Borrar un cliente existente.\n");
-        sb.append("3. Buscar un cliente por nif.\n");
-        sb.append("4. Listar todos los clientes.\n");
-
-        return sb.toString();
     }
 
     void filtraOpcion(final int opcion) {
