@@ -7,7 +7,7 @@ public class Menu {
     Gestor gestor = new Gestor();
 
     public void ejecuta() {
-        int opcion = 0;
+        OpcionesMenu opcion = OpcionesMenu.SALIR;
 
         do {
             System.out.println(OpcionesMenu.getMenu());
@@ -16,28 +16,13 @@ public class Menu {
         } while(true);
     }
 
-    private int pideOpcion() {
+    private OpcionesMenu pideOpcion() {
         System.out.println("Qué opción desea: ");
-        return teclado.nextInt();
+
+        return OpcionesMenu.getOpcion(teclado.nextInt());
     }
 
-    void filtraOpcion(final int opcion) {
-        switch (opcion){
-            case 1:
-                gestor.nuevoCliente();
-                break;
-            case 2:
-                gestor.borrarCliente();
-                break;
-            case 3:
-                gestor.buscarCliente();
-                break;
-            case 4:
-                gestor.listarClientes();
-                break;
-            case 0:
-                gestor.salir();
-                break;
-        }
+    void filtraOpcion(final OpcionesMenu opcion) {
+        opcion.tarea.tarea(gestor);
     }
 }

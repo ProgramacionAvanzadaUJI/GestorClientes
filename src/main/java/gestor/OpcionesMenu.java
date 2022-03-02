@@ -1,16 +1,19 @@
 package gestor;
 
 public enum OpcionesMenu {
-    SALIR("Salir."),
-    NUEVO_CLIENTE("Añadir un nuevo cliente."),
-    BORRAR_CLIENTE("Borrar un cliente existente."),
-    BUSCAR_CLIENTE("Buscar un cliente por nif."),
-    LISTAR_CLIENTES("Listar todos los clientes.");
+    SALIR("Salir.", new Salir()),
+    NUEVO_CLIENTE("Añadir un nuevo cliente.", new NuevoCliente()),
+    BORRAR_CLIENTE("Borrar un cliente existente.", new BorrarCliente()),
+    BUSCAR_CLIENTE("Buscar un cliente por nif.", new BuscarCliente()),
+    LISTAR_CLIENTES("Listar todos los clientes.", new ListarClientes()),
+    ACTUALIZAR_CLIENTE("Actualizar cliente", new ActualizarCliente());
 
     String textoOpcion;
+    Tarea tarea;
 
-    private OpcionesMenu(String textoOpcion) {
+    private OpcionesMenu(String textoOpcion, Tarea tarea) {
         this.textoOpcion = textoOpcion;
+        this.tarea = tarea;
     }
 
     public static OpcionesMenu getOpcion(int posicion) {
